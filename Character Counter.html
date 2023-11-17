@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Character Counter</title>
+</head>
+<body>
+  <h2>Character Counter</h2>
+  <label for="textInput">Enter Text:</label>
+  <input type="text" id="textInput">
+  <p id="charCount">Character count: 0</p>
+
+  <script>
+
+    function CharacterCounter(inputElement, outputElement) {
+      this.inputElement = inputElement;
+      this.outputElement = outputElement;
+    }
+
+    // Add a method to the CharacterCounter prototype to count characters and display the count
+    CharacterCounter.prototype.countCharacters = function() {
+      const inputText = this.inputElement.value;
+      const charCount = inputText.length;
+      this.outputElement.textContent = "Character count: " + charCount;
+    }
+
+    // Create an instance of CharacterCounter
+    const textInput = document.getElementById('textInput');
+    const charCountOutput = document.getElementById('charCount');
+    const characterCounter = new CharacterCounter(textInput, charCountOutput);
+
+    // Add an event listener to the input field to update the character count in real-time
+    textInput.addEventListener('input', function() {
+      characterCounter.countCharacters();
+    });
+  </script>
+</body>
+</html>
